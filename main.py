@@ -1,9 +1,9 @@
-
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from statistics import mean, pstdev
+from math import erf, sqrt
 
 app = FastAPI()
 
@@ -40,9 +40,15 @@ def receber_notas(dados: DadosNotas):
 
         if desvio_padrao == 0:
             escore_z = None
+            probabilidade = None
             classificacao = "Não calculável"
+
         else:
             escore_z = (nota - media) / desvio_padrao
+
+            probabilidade = (
+                (1 + erf(escore_z / sqrt(2))) / 2
+            ) * 100
 
             if escore_z > 0:
                 classificacao = "Acima da média"
@@ -55,7 +61,8 @@ def receber_notas(dados: DadosNotas):
             "aluno": indice,
             "nota": nota,
             "escore_z": round(escore_z, 2) if escore_z is not None else None,
-            "classificacao": classificacao
+            "classificacao": classificacao,
+            "probabilidade": round(probabilidade, 2) if probabilidade is not None else None
         })
 
     return {

@@ -1,4 +1,3 @@
-
 async function analisarNotas() {
     const campoNotas = document.getElementById("notas");
     const resultado = document.getElementById("resultado");
@@ -37,6 +36,7 @@ async function analisarNotas() {
                 <td>${aluno.nota}</td>
                 <td>${aluno.escore_z ?? "Não calculável"}</td>
                 <td>${aluno.classificacao}</td>
+                <td>${aluno.probabilidade !== null ? aluno.probabilidade + "%" : "Não calculável"}</td>
             </tr>
         `).join("");
 
@@ -55,6 +55,7 @@ async function analisarNotas() {
                     <th>Nota</th>
                     <th>Escore Z</th>
                     <th>Classificação</th>
+                    <th>Percentual abaixo da nota</th>
                 </tr>
                 ${linhas}
             </table>
