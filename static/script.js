@@ -1,3 +1,16 @@
+function gerarNotas() {
+    const campoNotas = document.getElementById("notas");
+
+    const notas = [];
+
+    for (let i = 0; i < 10; i++) {
+        const nota = Math.floor(Math.random() * 101);
+        notas.push(nota);
+    }
+
+    campoNotas.value = notas.join(", ");
+}
+
 async function analisarNotas() {
     const campoNotas = document.getElementById("notas");
     const resultado = document.getElementById("resultado");
@@ -49,7 +62,7 @@ async function analisarNotas() {
 
             <h3>Desempenho individual</h3>
 
-            <table border="1" cellpadding="8">
+            <table>
                 <tr>
                     <th>Aluno</th>
                     <th>Nota</th>

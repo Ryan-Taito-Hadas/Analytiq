@@ -1,23 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisador de Desempenho</title>
+
+    <title>Analytiq | Desempenho Acadêmico</title>
+
+    <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
 
-    <h1>Analisador de Desempenho Acadêmico</h1>
+    <header class="topbar">
+        <div class="logo">
+            <span class="logo-icon">A</span>
+            <span>Analytiq</span>
+        </div>
 
-    <p>Digite as notas dos alunos, separadas por vírgula:</p>
+        <span class="header-label">ANÁLISE ACADÊMICA</span>
+    </header>
 
-    <textarea id="notas" placeholder="Ex: 70, 85, 60, 90"></textarea>
+    <main class="container">
 
-    <br><br>
+        <section class="welcome">
+            <span class="tag">PAINEL DE DESEMPENHO</span>
 
-    <button onclick="analisarNotas()">Analisar notas</button>
+            <h1>Analisador de Desempenho Acadêmico</h1>
 
-    <div id="resultado"></div>
+            <p>
+                Analise notas, identifique padrões e compreenda
+                o desempenho geral da sua turma através da estatística.
+            </p>
+        </section>
+
+        <section class="input-card">
+
+            <div class="section-title">
+                <div>
+                    <h2>Nova análise</h2>
+                    <p>Informe as notas dos alunos para começar.</p>
+                </div>
+
+                <span class="number-icon">01</span>
+            </div>
+
+            <label for="notas">Notas dos alunos</label>
+
+            <textarea
+                id="notas"
+                placeholder="Exemplo: 70, 85, 60, 90"
+            ></textarea>
+
+            <span class="input-hint">
+                Separe cada nota utilizando uma vírgula. Valores de 0 a 100.
+            </span>
+
+            <div class="button-group">
+                <button class="generate-button" onclick="gerarNotas()">
+                    Gerar 10 notas aleatórias
+                </button>
+
+                <button class="analyze-button" onclick="analisarNotas()">
+                    Analisar desempenho →
+                </button>
+            </div>
+
+        </section>
+
+        <section class="results-section">
+
+            <div class="section-title">
+                <div>
+                    <h2>Resultados</h2>
+                    <p>Os indicadores estatísticos aparecerão aqui.</p>
+                </div>
+            </div>
+
+            <div id="resultado" class="result-card">
+                <div class="empty-state">
+                    <span class="empty-icon">📊</span>
+                    <h3>Nenhuma análise realizada</h3>
+                    <p>Insira as notas acima para visualizar os resultados.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>Analytiq © 2026 — Projeto acadêmico de estatística</p>
+        </footer>
+
+    </main>
 
     <script src="/static/script.js"></script>
 
