@@ -19,7 +19,16 @@ def inicio():
 
 @app.post("/notas")
 def receber_notas(dados: DadosNotas):
+
+    quantidade = len(dados.notas)
+
+    if quantidade == 0:
+        return {"erro": "Nenhuma nota foi informada."}
+
+    media = sum(dados.notas) / quantidade
+
     return {
-        "quantidade": len(dados.notas),
-        "notas": dados.notas
+        "quantidade": quantidade,
+        "notas": dados.notas,
+        "media": round(media, 2)
     }
