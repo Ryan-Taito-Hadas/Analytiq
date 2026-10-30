@@ -34,9 +34,34 @@ def receber_notas(dados: DadosNotas):
     media = mean(notas)
     desvio_padrao = pstdev(notas)
 
+    alunos = []
+
+    for indice, nota in enumerate(notas, start=1):
+
+        if desvio_padrao == 0:
+            escore_z = None
+            classificacao = "Não calculável"
+        else:
+            escore_z = (nota - media) / desvio_padrao
+
+            if escore_z > 0:
+                classificacao = "Acima da média"
+            elif escore_z < 0:
+                classificacao = "Abaixo da média"
+            else:
+                classificacao = "Na média"
+
+        alunos.append({
+            "aluno": indice,
+            "nota": nota,
+            "escore_z": round(escore_z, 2) if escore_z is not None else None,
+            "classificacao": classificacao
+        })
+
     return {
         "quantidade": quantidade,
         "notas": notas,
         "media": round(media, 2),
-        "desvio_padrao": round(desvio_padrao, 2)
+        "desvio_padrao": round(desvio_padrao, 2),
+        "alunos": alunos
     }

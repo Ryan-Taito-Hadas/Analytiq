@@ -31,12 +31,33 @@ async function analisarNotas() {
             return;
         }
 
+        const linhas = dados.alunos.map(aluno => `
+            <tr>
+                <td>${aluno.aluno}</td>
+                <td>${aluno.nota}</td>
+                <td>${aluno.escore_z ?? "Não calculável"}</td>
+                <td>${aluno.classificacao}</td>
+            </tr>
+        `).join("");
+
         resultado.innerHTML = `
             <h2>Resultado da análise</h2>
+
             <p>Quantidade de alunos: ${dados.quantidade}</p>
-            <p>Notas: ${dados.notas.join(", ")}</p>
             <p>Média da turma: ${dados.media}</p>
-            <h3>Desvio padrão: ${dados.desvio_padrao}</h3>
+            <p>Desvio padrão: ${dados.desvio_padrao}</p>
+
+            <h3>Desempenho individual</h3>
+
+            <table border="1" cellpadding="8">
+                <tr>
+                    <th>Aluno</th>
+                    <th>Nota</th>
+                    <th>Escore Z</th>
+                    <th>Classificação</th>
+                </tr>
+                ${linhas}
+            </table>
         `;
 
     } catch (erro) {
