@@ -8,7 +8,13 @@ function gerarNotas() {
         notas.push(nota);
     }
 
-    campoNotas.value = notas.join(", ");
+    const notasExistentes = campoNotas.value.trim();
+
+    if (notasExistentes !== "") {
+        campoNotas.value = notasExistentes + ", " + notas.join(", ");
+    } else {
+        campoNotas.value = notas.join(", ");
+    }
 }
 
 async function analisarNotas() {
