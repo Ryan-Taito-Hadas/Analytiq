@@ -25,6 +25,7 @@ No terminal, dentro da pasta do projeto:
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload
 
 Notas simuladas para testes:
 5.8, 6.2, 6.5, 6.7, 6.8, 7.0, 7.1, 7.2, 7.3, 7.5, 7.8, 8.0, 8.2, 8.5, 8.7
