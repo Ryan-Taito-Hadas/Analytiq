@@ -1,12 +1,25 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from pydantic import BaseModel
 
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/", response_class=HTMLResponse)
+
+class DadosNotas(BaseModel):
+    notas: list[float]
+
+
+@app.get("/")
 def inicio():
-    return """
-    <h1>Analisador de Desempenho Acadêmico</h1>
-    <p>Sistema funcionando!</p>
-    """
+    return FileResponse("templates/index.html")
+
+
+@app.post("/notas")
+def receber_notas(dados: DadosNotas):
+    return {
+        "quantidade": len(dados.notas),
+        "notas": dados.notas
+    }
