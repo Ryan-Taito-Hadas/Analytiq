@@ -4,96 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Analytiq | Desempenho Acadêmico</title>
-
     <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-
     <header class="topbar">
         <div class="logo">
             <span class="logo-icon">A</span>
             <span>Analytiq</span>
         </div>
-
         <span class="header-label">ANÁLISE ACADÊMICA</span>
     </header>
 
     <main class="container">
-
         <section class="welcome">
-            <span class="tag">PAINEL DE DESEMPENHO</span>
-
+            <span class="tag">ANÁLISE ESTATÍSTICA</span>
             <h1>Analisador de Desempenho Acadêmico</h1>
-
-            <p>
-                Analise notas, identifique padrões e compreenda
-                o desempenho geral da sua turma através da estatística.
-            </p>
+            <p>Analise notas com média, desvio padrão, escore Z e distribuição normal.</p>
         </section>
 
         <section class="input-card">
+            <h2>Nova análise</h2>
+            <p class="description">Identifique a avaliação e informe as notas dos participantes.</p>
 
-            <div class="section-title">
+            <div class="form-grid">
                 <div>
-                    <h2>Nova análise</h2>
-                    <p>Informe as notas dos alunos para começar.</p>
+                    <label for="avaliacao">Nome da avaliação</label>
+                    <input id="avaliacao" type="text" maxlength="100" placeholder="Ex.: Simulado de Matemática">
                 </div>
 
-                <span class="number-icon">01</span>
+                <div>
+                    <label for="periodo">Período</label>
+                    <input id="periodo" type="text" maxlength="50" placeholder="Ex.: Outubro de 2026">
+                </div>
+
+                <div>
+                    <label for="origem">Origem das notas</label>
+                    <select id="origem">
+                        <option value="Dados reais">Dados reais</option>
+                        <option value="Dados simulados">Dados simulados</option>
+                    </select>
+                </div>
             </div>
 
-            <label for="notas">Notas dos alunos</label>
-
-            <textarea
-                id="notas"
-                placeholder="Exemplo: 70, 85, 60, 90"
-            ></textarea>
+            <label for="notas">Notas de 0 a 10</label>
+            <textarea id="notas" placeholder="Exemplo: 7.5, 8.0, 6.5, 9.0"></textarea>
 
             <span class="input-hint">
-                Separe cada nota utilizando uma vírgula. Valores de 0 a 100.
+                Separe as notas por vírgula. Use ponto para casas decimais.
+                Cada nota representa um participante.
             </span>
 
-            <div class="button-group">
-                <button class="generate-button" onclick="gerarNotas()">
-                    Gerar 10 notas aleatórias
-                </button>
-
-                <button class="analyze-button" onclick="analisarNotas()">
-                    Analisar desempenho →
-                </button>
-            </div>
-
+            <button onclick="analisarNotas()">Analisar desempenho</button>
         </section>
 
         <section class="results-section">
-
-            <div class="section-title">
-                <div>
-                    <h2>Resultados</h2>
-                    <p>Os indicadores estatísticos aparecerão aqui.</p>
-                </div>
-            </div>
+            <h2>Resultados</h2>
 
             <div id="resultado" class="result-card">
                 <div class="empty-state">
                     <span class="empty-icon">📊</span>
                     <h3>Nenhuma análise realizada</h3>
-                    <p>Insira as notas acima para visualizar os resultados.</p>
+                    <p>Preencha os dados para visualizar os resultados.</p>
                 </div>
             </div>
-
         </section>
 
-        <footer>
-            <p>Analytiq © 2026 — Projeto acadêmico de estatística</p>
-        </footer>
-
+        <footer>Analytiq © 2026 — Projeto acadêmico de estatística</footer>
     </main>
 
     <script src="/static/script.js"></script>
-
 </body>
+
 </html>
